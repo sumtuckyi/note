@@ -1,0 +1,77 @@
+Static files
+: 서버 측에서 변경되지 않고 고정적으로 제공되는 파일(이미지, js, css파일 등)
+
+웹서버의 기본동작은 특정위치(url)에 있는 자원을 요청(HTTP request)받아서 
+응답을 처리(HTTP response)하고 제공하는 과정으로 이루어져 있다. 
+-웹서버는 요청받은 "url"로 서버에 존재하는 정적 자원을 제공한다. 
+=> ★★정적파일을 제공하기 위한 경로(URL)가 있어야 함★★
+ex) http://127.0.0.1:8000/static/articles/sample-1.png (기본경로 예시)
+ex) http://127.0.0.1:8000/static/sample-2.png (추가경로 예시)
+주소가 존재해야만 해당 url로 사용자가 요청을 보낼 수 있다.
+ 
+1.기본 경로(로컬 주소) : app folder/static/ 
+2.추가 경로 : 프로젝트 폴더와 같은 계층에 static폴더를 생성하고 설정
+
+static 태그를 사용하기 위해 {% load static %}을 선언해야함 -> 해당 태그가 선언된 위치 이하로 static파일이 적용됨
+
+Media files
+: 사용자가 웹에서 업로드하는 정적 파일
+
+settings.py파일 추가 작성
+# 기본경로 및 추가경로에 위치한 정적 파일을 참조하기 위한 url
+STATIC_URL = 'static/'
+# 추가 경로
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    # os.path.join(BASE_DIR, 'static')
+]
+
+참고 : https://docs.djangoproject.com/en/4.2/howto/static-files/
+
+이미지 업로드 기능 구현하기 + 사용자가 업로드한 이미지 수정 기능 구현하기
+
+-settings.py 파일 내용추가
+# 미디어 파일들이 위치하는 디렉토리의 절대 경로
+MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_ROOT에서 제공되는 미디어 파일에 대한 주소를 생성
+MEDIA_URL = 'media/'
+
+- urls.py 파일 내용추가
+from django.conf import settings
+from django.conf.urls.static import static
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('articles/', include('articles.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# 미디어 파일의 주소와 미디어 파일이 위치한 경로를 인자로 전달
+
+ImageField()
+-> 사용자의 이미지 업로드에 사용하는 모델 필드가 필요
+-이미지 객체가 직접 저장되는 것이 아니라 ★★이미지 파일의 경로(절대주소경로로 텍스트)★★가 데이터베이스에 저장되는 것임
+-따라서 테이블의 image필드에 저장된 텍스트를 경로로 사용함
+-models.py 파일 내용 추가
+image = models.ImageField(blank=True)
+-> 인자에 blank=True(해당 필드의 공백을 허용함)를 전달해주지 않으면 게시글 작성시 이미지 업로드가 필수 조건이 됨
+$pip install Pillow 
+- 파이썬의 이미지 라이브러리 설치 
+
+-templates폴더의 html파일 수정하기
+form은 기본적으로 텍스트 데이터를 입력받기 위한 객체이므로
+-속성값으로 enctype="multipart/form-data"을 추가해줘야 이미지 파일을 입력받을 수 있다. 
+-views.py의 함수 내부의 필요한 위치에 request.FILES를 인자로 전달해줘야함
+-html파일에서 해당 이미지 객체를 표시하기 위해서는 article.image.url로 전달해야 올바른 image url이 전달되어 
+이미지에 대한 요청이 전달될 수 있다. 
+
+
+'upload_to' argument
+: media폴더 하위에 새로운 경로를 추가할 수 있음
+
+※왜 데이터베이스의 이미지 필드에 파일의 경로만을 텍스트로 저장하는가?
+1. 성능 및 데이터베이스 최적화의 관점에서 직접 이미지 파일을 저장하는 경우 데이터베이스의 크기가 급격하게 증가, 이는 성능저하로 이어짐 
+그렇기 때문에 파일 자체는 파일시스템에 별도로 저장하고, 데이터베이스에는 그 파일에 대한 문자열 경로만 저장
+2. 유지보수의 관점에서 이미지 파일이 변경되는 경우, 만약 데이터베이스에 직접 파일을 저장한다면
+업데이트시 데이터베이스를 직접 조작해야하는데 데이터베이스에 경로만 저장되어 있다면
+파일시스템에서만 파일을 수정하면 된다. 
+ 
+※현재는 장고서버에서 모든 파일(예를 들어 사용자가 업로드 하는 이미지 파일)을 다루지만 나중에는 클라우드 서버에 보관하게 될텐데, 
+이때에도 클라우드에 있는 파일의 경로만을 장고 서버에 저장하게 될 것 

@@ -1,0 +1,55 @@
+장고 Form 
+
+HTML 'form' tag
+: 사용자로부터 데이터를 받기 위해 활용한 방법, 비정상 혹은 악의적인 요청을 필터링할 수 없음
+-> 유효한 데이터인지 확인이 필요'
+
+유효성 검사 구현
+-입력 값, 형식, 중복, 범위, 보안 등 많은 것들을 고려해야 함
+-장고가 제공하는 Form을 사용 
+
+Django Form 
+: 사용자 입력 데이터를 수집하고, 처리 및 유효성 검사를 수행하기 위한 도구
+-HTML form의 생성 포함 
+
+Form class정의
+from Django import forms
+
+widgets
+: input element의 속성 및 표현을 담당
+
+ModelForm
+: 사용자 입력 데이터를 ★DB에 저장★해야 할 때(저장을 목적으로 사용자로부터 데이터를 입력받는 경우)
+-모델 기반 form이라 어떤 유효성 검사를 거쳐 데이터를 받을지 사전에 정해져 있음 
+-Model과 연결된 Form을 자동으로 생성해주는 기능 제공
+
+Meta class
+: ModelForm의 정보를 작성하는 곳
+-'fields'와 'exclude'속성을 사용하여 모델에서 포함하지 않을 필드를 지정할 수 있음 
+
+is_valid()
+: 여러 유효성 검사를 실행하고, 데이터가 유효한지 여부를 Boolean으로 반환
+※https://docs.djangoproject.com/en/4.2/ref/validators/
+
+참고
+ARTICLEFORM의 부모 클래스가 MODELFORM이고 그 부모 클래스가 BASEMODELFORM
+- 첫번째 인자가 data, instance인자는 두 번째 위치의 인자가 아니기 때문에 올바르게 키워드 인자를 넘겨주기
+위해서는 꼭 인자를 명시해주어야 한다.
+
+Handling HTTP requests
+GET - 특정 리소스 조회(주고 받는 데이터의 보안이 중요하지 않음)
+- 
+POST - 특정 리소스 변경(주고 받는 데이터의 보안이 중요함)
+- 인증 수단으로서 token이 필수 
+
+view함수 구조 변화
+-new와 create함수간 공통점과 차이점
+둘 다 게시글 생성이라는 목적은 같지만, new는 게시글 조회 요청만, create는 게시글 생성 요청만 받는다.
+-> 목적이 같으므로 하나의 함수 내에서 분기를 만드는 것이 어떨까??
+ 
+새로운 create view함수
+HTTP 요청 method가 POST인 경우와 그렇지 않은 경우로 구분한다..!
+-> 그 이유 생각해보기
+★★새로운 create함수와 update함수의 구조 이해하기★★
+
+** a tag는 GET요청만 보낼 수 있음

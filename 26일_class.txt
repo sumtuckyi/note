@@ -1,0 +1,10 @@
+가상환경 만들기
+가상환경으로 전환하기
+requirements.txt 패키지 설치하기 
+새 프로젝트 생성하기
+새 app 생성하기
+settings.py에서 새 app 등록하기
+url.py에서 경로 생성하기 
+
+models.py에서 새 모델 생성하기
+makemigrations, migrate하기 
