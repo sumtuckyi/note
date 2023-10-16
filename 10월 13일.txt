@@ -1,0 +1,23 @@
+web crawling
+:여러 웹 페이지를 돌아다니며 웹 페이지 url 수집 후 indexing
+web crawling process
+-웹페이지 다운로드 : HTML, CSS, JS 등의 코드를 가져오는 단계
+-페이지 파싱 : 다운로드 받은 코드를 분석하여 필요한 데이터를 추출하는 단계
+-링크 추출 및 다른 페이지 탐색 : 다른 링크를 추출하고, 다음 페이지로 넘어가서 위의 작업을 반복
+-데이터 추출 및 저장 : 분석 및 시각화를 위해 데이터를 처리하고 저장함
+
+
+git
+git의 관리를 받게 하고자 하는 폴더에서 git init
+새로운 파일 생성 -> Untracked
+trakced
+-modified
+-staged
+
+branch
+브랜치 만들기-> main branch에서 가져온 파일을 수정하되, 원본 파일과 프로젝트에 영향을 주지 않기 위함
+$ git branch branch_name
+
+branch merge
+merge시 여러 브랜치가 충돌할 수 있는데, 이를 방지하기 위해 원본 내용을 복사 후, 새로운 내용을 추가하고 
+다시 merge한다. 

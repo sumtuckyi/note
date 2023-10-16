@@ -1,0 +1,45 @@
+Spring Boot&Hibernate/JPA
+: java framework
+스프링 : 자바 기반 웹 어플리케이션 프레임워크
+-helper classes와 annotations제공
+-> 기존 스프링의 부족한 점을 보완한 웹 프레임워크
+-configuration을 최소화(자동화)
+-build tool의 dependency conflict문제 해결
+-embedded HTTP server제공 : JAR파일 내에 어플리케이션 코드와 서버가 함께 내장
+-> spring MVC, spring REST, spring Core, spring AOP...
+
+스프링부트 application 제작(MVC)
+스프링부트를 이용한 REST API 제작
+웹 어플리케이션의 CRUD구현
+spring security to control application access
+embedded Tomcat web application server
+build tool(Maven, Gradle)을 위한 Project Object Models(POMs)를 제공
+Automatic configuration of the Spring Application
+No XML configuration is required
+
+스프링부트 프로젝트 시작하기
+start.apring.io
+
+build tool(Maven, Gradle)의 역할
+프로젝트를 위해 필요한 JAR파일들을 자동으로 다운로드
+
+스프링은 POJO프로그래밍을 지향
+POJO : Plain Old Java Object
+이를 위해 IoC/DI, AOP, PSA기술을 지원함 
+-IoC/DI: Inversion of Control/Dependency Injection. 스프링이 객체들 사이의 의존관계를 맺어주는 것/
+의존관계를 맺어줄 때 한 객체의 생성자를 통해 나머지 객체를 전달해주는 방식으로 관계를 맺어주는 것을 의미
+-AOP(Aspect Oriented Programming)
+: 어플리케이션 전반에 걸쳐 공통적으로 적용되는 공통 기능을 비즈니스 로직으로부터 분리해내는 것(유지보수가 수월함)
+-PSA(Portable Service Abstraction)
+: 특정 서비스를 추상화한 인터페이스를 통해 사용하는 tool에 맞추어 서비스를 사용할 수 있도록 한 것
+
+@Controller : controller는 view template을 찾아서 띄어주는 역할을 수행, 
+@ResponseBody : HTTP 응답으로서 데이터를 반환하기 위해, 반환된 객체를 serialize하여 HttpResponxe에 담게 함
+
+@RestController
+:It includes the @Controller and @ResponseBody annotations. 
+
+※ REST API
+: REST(REpresentational State Transfer) 아키텍처 스타일의 디자인 원칙을 준수하는 API
+
+41p까지.
