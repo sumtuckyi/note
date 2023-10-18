@@ -65,9 +65,8 @@ firstpjt폴더의 settings.py에 새로 생성한 앱 정보를 기입해줌
 프로젝트 구조
 -settings.py : 프로젝트의 모든 설정을 관리
 -urls.py : URL과 이에 해당하는 적절한 View를 찾아서 연결
--__init__.py : 해당 폴더를 패키지로 인식하도록 설정
--asgi.py 
--wsgi.py
+-__init__.py : 해당 폴더를 패키지로 인식하도록 설정(삭제하면 해당 폴더를 패키지로서 import하여 사용할 수 없음)
+-asgi.py, wsgi.py : 장고를 WAS로 배포할 수 있도록 도와준다. (동적 파일 처리, 데이터베이스 접근 등을 도와줌)
 -manage.py : Django 프로젝트와 다양한 방법으로 상호작용 하는 커맨드라인 유틸리티
 앱 구조
 -admin.py : 관리자용 페이지 설정
