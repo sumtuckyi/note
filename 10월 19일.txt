@@ -1,0 +1,52 @@
+★★Serializer★★
+Serializer는 테이블의 인스턴스(QuerySet or Query)를 JSON형식으로 변환하여 응답으로 반환
+
+Creating a Serializer class
+Serializer(data=data)는 listserializer type객체를 반환한다. -> 딕셔너리 형식?
+여기서 data=data는
+ModelSerializer는 기존의 모델과 연결, field값을 이용해 테이블의 어떤 속성을 처리할 지 지정.
+
+
+어제는 단일 모델로 실습을 했다면
+오늘은 다수의 모델로 실습할 것.
+
+
+Model -> models.py에서 프로젝트에 필요한 모델 정의 -> migration 수행
+URL -> url.py에서 REST 방식으로 작성
+HTTP method별로 함수 정의 -> views.py의 함수에서 메서드 종류별로 분기 생성
+Response as JSON -> Serializer class를 별도의 파일에서 정의하고 view함수에서 사용
+: Serializer는 모델 별로 각자 생성, Serializer class 내에서 해당 class 내에서만 사용할
+새로운 Serializer class를 정의하여 ♥override♥가능 
+
+
+PUT요청을 보낼 때, 수정하려는 필드의 데이터만 보내면 안 되고
+모든 필드의 데이터를 보내야 한다. 
+왜? ->  serializer 클래스 정의시, field = '__all__'로 해놓았기 때문에
+모든 필드에 대해 유효성 검사를 진행하게 되고 필드 값이 전달되지 않으면
+유효성 검사를 통과하지 못 한다. 
+
+POST요청을 보낼 때, 읽기 전용 필드는 유효성 검사에서 포함되지 않도록 한다.
+-> serializer class에서 정의해줌
+
+
+게시글 번호를 참조하고 있으니 그 번호를 가지고 다른 테이블의 데이터에 접근하여 가져올 수도 있지만,
+참조상태의 재구성을 원한다...!(예를 들어 댓글 조회 시 게시글의 제목까지 응답으로 보내고 싶다.)
+=응답 데이터 변경
+
+※클래스 정의 및 활용 더 공부하기 
+
+역참조 데이터 구성
+article => comment 역참조 관계를 활용한 JSON데이터 재구성 
+-단일 게시글 조회 시 해당 게시글에 작성된 댓글 목록
+-단일 게시글 조회 시 해당 게시글에 작성된 댓글 개수 : 새로운 필드
+
+API 문서화
+HATEOAS와 관련
+
+*API 서버에서 적합*
+-> 클라이언트에게 다양한 원인을 포괄하는 500에러를 제공하기 보다는 
+적절한 예외 처리를 통해 보다 정확한 에러 현황을 전달하기 위함 
+get_object_or_404():
+Ariticle.objects.get(pk=3)에서 get()을 호출하지만 해당 객체가 없을 때,
+기존 DoesNotExist 예외 대신 Http404를 raise함 
+get_list_or_404()
