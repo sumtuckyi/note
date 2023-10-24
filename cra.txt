@@ -1,0 +1,24 @@
+★starting react project★
+#프로젝트 폴더 생성
+$mkdir react(폴더명)
+$cd react
+#프로젝트 폴더 내에서 명령어 실행
+$npx create-react-app my-app(앱 폴더명)
+#package.json파일 생성
+$npm init
+#package.json파일의 의존성을 설치
+$npm install
+#create-react-app패키지를 설치
+$npm install create-react-app
+#npx로 패키지 실행하기 
+$npx create-react-app my-app .
+#앱 폴더로 이동
+$cd my-app
+#개발자 서버 열기
+$npm start
+
+※NPM(Node Package Manager)
+node.js의 모든 모듈과 패키지를 관리, Node프로젝트에서 사용하는 모듈과 패키지는 모두 npm을 이용해 설치된다.
+※NPX(Node Package eXecute)
+npm registry에 있는 패키지를 설치 없이 실행할 수 있는 npm package runner.
+Packages used by npx are not installed globally.

@@ -1,0 +1,15 @@
+hoisting
+변수를 선언 이전에 참조할 수 있는 현상
+실제 실행 시에 변수가 코드의 최상단으로 끌어 올려지게 되는데(hoisted)
+그래서 변수 선언 이전의 위치에서 접근 시 undefined로 값이 할당되는 현상이 발생하였으나
+let, const 선언자로 문제를 해결
+
+※ 
+const
+block-scoped local variables
+
+let
+re-assignable, block-scoped local variables
+
+var
+function-scoped or globally-scoped variables
