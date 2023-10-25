@@ -1,15 +1,18 @@
 hoisting
 변수를 선언 이전에 참조할 수 있는 현상
-실제 실행 시에 변수가 코드의 최상단으로 끌어 올려지게 되는데(hoisted)
+실제 실행 시에 변수가 코드의 최상단으로 끌어 올려지게 되는데(hoisted = 변수를 참조하는 코드의 상부에서 선언된 것으로 인식하고 코드 진행)
 그래서 변수 선언 이전의 위치에서 접근 시 undefined로 값이 할당되는 현상이 발생하였으나
 let, const 선언자로 문제를 해결
 
 ※ 
 const
-block-scoped local variables
+:block-scoped local variables
 
 let
-re-assignable, block-scoped local variables
+:re-assignable, block-scoped local variables
+block-scoped : 블록 내부에서 선언되면 해당 블록 외부에서는 사용 불가(=지역변수로 취급)
 
 var
-function-scoped or globally-scoped variables
+:function-scoped or globally-scoped variables
+function-scoped : 함수 내부에서 선언되면 해당 함수 외부에서는 사용 불가(=지역변수로 취급)
+블록 내부에서 선언되는 경우에는 해당 블록 외부에서도 사용 가능(=전역변수 취급)
