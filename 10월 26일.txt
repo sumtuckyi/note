@@ -1,0 +1,55 @@
+controlling event 
+
+웹에서의 이벤트 : mouse, input, keyboard, touch, ...
+
+모든 DOM요소는 이벤트를 만들어 냄
+event를 받고 받은 event를 처리(event handler)할 수 있음
+ex) EventTarget.addEventListener(type, handler(callback func))
+EventTarget에 지정한 이벤트가 발생하면 그 이벤트를 event object로 받을 수 있는데,
+이는 callback함수의 인자(유일함)가 된다.
+ 
+document.addEventListener('keyup', (event) => {
+  const keyName = event.key;
+
+  // As the user releases the Ctrl key, the key is no longer active,
+  // so event.ctrlKey is false.
+  if (keyName === 'Control') {
+    alert('Control key was released');
+  }
+}, false);
+
+event object가 존재 
+
+
+bubbling
+: 한 element에 이벤트가 발생하면, 이 요소의 이벤트를 받는 handler가 동작하고, 
+가장 최상단의 조상 요소(즉, document)를 만날 때까지 부모 요소의 handler가 연쇄적으로 동작함
+예를 들어 div>span>p의 구조에서 p태그에 
+
+event.target
+: 이벤트가 발생한 가장 안쪽의 요소를 참조 / ☆실제 이벤트가 시작☆된 target element(버블링의 시작점) / 버블링이 진행되어도 불변
+event.currentTarget(현재 발생한 이벤트가 어떤 element에 부착된 handler로 인해 발생했는가?)
+: 항상 event handler가 연결된 요소만을 참조 / this와 같음
+-> 예를 들어 가장 최상위 요소에만 event handler가 부착된 경우, 그 하위 요소에 이벤트가 발생해도
+ event handler가 부착된 요소가 currentTarget임
+
+※capturing 
+이벤트 최초 발생 시, html요소가 상속 구조로 되어 있는 경우 가장 상위 요소에서 시작하여 실제 이벤트가 발생한 요소를
+만날 때까지 하위로 탐색해 나감 
+-> 실제 이벤트가 발생한 요소를 만나면 그때부터 실제 이벤트 핸들러가 부착된 요소를 찾기 위해 다시 상위로 거슬러 올라가는데
+이 과정을 bubbling이라고 함 
+
+event.preventDefault()
+
+유사배열객체
+ex) nodelist type(배열로 타입을 변환하여야 Array.prototype을 상속받아 배열 메서드를 사용할 수 있다.) 
+-타입 변환은 Array.from(유사배열객체) / [...유사배열객체] 두 가지 방식을 주로 사용한다. 
+-iterable하지 않은 유사배열객체는 Object.values(유사배열객체)를 사용한다.
+
+얕은 복사와 깊은 복사
+원시타입을 제외한 데이터 타입은 일반적으로 얕은 복사
+2차원 이상의 데이터 타입은 깊은 복사를 해야함
+
+깊은 복사 방법
+-일반적 : 스프레드 연산자
+-object type : JSON이용 / lodash library이용 
