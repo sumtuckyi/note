@@ -1,0 +1,16 @@
+자바스크립트 코드를 자바스크립트 엔진이 call stack(+Memory Heap)을 이용해  single-thread방식으로 처리
+single call stack을 가지고 있기 때문에 single-thread방식으로 동작하는 것
+엔진이 코드를 execute할 때, 차례로 call stack에 쌓이게 된다.(단위-stack frame) 
+single-thread방식에서는 multi-threaded환경에서 발생하는 deadlocks 같은 상황을 고려할 필요가 없어 좋지만,
+이 역시 한계가 존재한다.
+예를 들어 처리되기까지 많은 시간이 걸리는 함수가 호출되어 call stack에 쌓인 상황을 생각해보자.
+call stack이 해당 함수를 처리하는 동안 브라우저는 아무 것도 할 수가 없다.(render or run any code)
+이러한 대기 상황이 꽤 오랫동안 지속된다면 대부분의 브라우저는 에러를 발생시키고 사용자에게 웹 페이지를 종료할 것인지 물어본다.
+이는 분명 사용자에게 불편함을 야기할 것이므로 해결책이 필요하다.
+=> asynchronous callbacks : 다른 함수의 인자로 '함수'를 넘겨주는 것이다. 
+setTimeout 같은 함수가 call stack에 들어오게 되면 Web API와 상호작용하고 타이머가 작동한다.
+setTimeout함수는 call stack에서 나오게 되며 다음 작업이 call stack에 들어가게 된다.
+타이머가 종료되면, setTimeout함수는 task queue에 삽입된다. 
+event loop는 call stack이 비어있다면 setTimeout의 콜백함수를 실행하기 위해 call stack에 넣는다. 
+
+Web API는 브라우저가 제공하며, 대표적으로 DOM, AJAX, setTimeout 등이 있다.
