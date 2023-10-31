@@ -1,0 +1,34 @@
+XHR object 생성 및 요청 -> Ajax로 요청을 처리 -> 응답데이터를 생성 -> JSON데이터 응답 -> 응답데이터를 활용해 DOM조작
+(이 과정에서 웹페이지의 일부분 만이 다시 로딩됨, 전체 웹 페이지가 새로고침 되지 않고서)
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+admin
+user1
+user2
+ssafy1234
+
+form에서 submit이벤트가 발생했을 때, 요청의 메서드와 url을 axios가 지정하여 요청을 보낸다. 
+-더 이상 form의 action, method속성이 필요가 없음
+
+※html태그의 'data-'속성
+html태그의 정보를 자바스크립트에서 접근하여 사용할 수 있도록 한다. 
+
+
+django template에서
+사용자의 요청을 처리하는 방식
+(기존) form tag를 이용
+-action속성 : submit동작 시, 요청을 보낼 주소를 지정, 해당 주소와 연결된 view함수가 로직을 처리
+-method속성 : 요청의 성격 명시
+(Ajax) axios library 이용
+-form tag는 말 그대로 사용자로부터 데이터를 입력받는 역할만
+-form tag object에 addEventListener()를 사용하여 콜백함수를 연결 : 
+-view함수가 반환한 변수에 접근하여 해당 변수가 가리키는 값을 사용할 수 있다.
+-axios()를 이용해 지정한 url에 method를 지정하여 요청을 보낸다 -> 요청에 대한 응답은 JsonResponse()를 이용해 보내짐
+-> JSON형식의 데이터를 받아 그 중 원하는 데이터만 사용한다. 
+★DTL로 HTML태그를 사용자에게 보여주는데 QuerySet의 데이터를 반복문을 이용해 페이지에 나타나게 하고 싶을 때,
+주로 동일한 양식의 컨텐츠가 반복되기 때문에 원하는 태그를 지정하여 조작하기 위해서 ★컨텐츠를 식별할 수 있는 것★이 중요하다. 
+ex) {% for article in articles %}
+{% endfor %} 에 담긴 tags 
+반복되는 컨텐츠 중에서 동일한 클래스를 가진 태그를 선택하면 nodelist를 반환하는데
+forEach()메서드를 이용해 각 태그마다 이벤트를 등록할 수 있다. 

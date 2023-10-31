@@ -50,7 +50,7 @@ event handler또한 비동기 프로그래밍의 한 형태
 
 Axios 라이브러리
 : 자바스크립트에서 사용되는 Promise기반의 HTTP 클라이언트 라이브러리 (비슷한 예로 파이썬의 requests 라이브러리)
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+☆☆☆<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>☆☆☆
 -여러 http request method사용 가능
 -then 메서드를 사용해서 성공하면 수행할 로직을 작성, catch 메서드를 사용해서 실패하면 수행할 로직을 작성 
 -비동기로 데이터 통신을 가능하게 하는 라이브러리
@@ -65,13 +65,20 @@ callback과 promise
 다른 기능을 수행하기 위해 많이 사용됨
 연쇄적으로 발생하는 ★비동기 작업을 순차적으로 동작★할 수 있게 함, BUT, 콜백 지옥에 빠질 수 잇음
 => 그렇다면 Promise를 사용하자..!
-Promise ? 자바스크립트에서 비동기 작업의 결과를 나타내는 object 
+♥Promise♥ ? 자바스크립트에서 비동기 작업의 결과를 나타내는 object (♥비동기 작업의 완료 사실과 작업의 결과값(fulfillment value)임♥)
 콜백과 동일한 역할, '작업이 끝나면 실행 시켜준다'는 약속.
-비동기 작업의 완료 또는 실패를 나타내는 객체이다.
+비동기 작업의 완료 또는 실패를 나타내는 객체이다. : promise object의 method인 resolve(), reject()
 비동기 작업이 하나 끝나면 해당 작업의 return 값(성공 또는 실패로 모두 promise object)을 인자로 받는 콜백함수를 then()이 인자로 받음. 
 이 과정이 연쇄적(★chaining★)으로 이어짐(앞쪽의 콜백함수가 실행되고 나서야 그 다음 콜백함수가 비로소 실행되므로 작업에 순서 부여 가능)
 then()중 하나라도 실패값을 반환하면 바로 이를 인자로 받는 콜백함수를 받는 catch()가 실행됨.
 
+promise를 사용해도 chaining이 길어지면 가독성이 떨어진다는 단점이 있음
+=> async & await를 이용해 동기 작업을 비동기 작업처럼 처리하도록 만들 수 있음
+- await : 비동기 함수 내부 또는 모듈의 최상단에서 표현식(promise object) 앞에 붙여 사용한다.
+＊표현식은 보통 promise를 리턴하는 함수
+이 연산자를 사용하면 promise를 기다렸다가 promise의 fulfillment value를 받는다.
+then()없이도 fulfillment value를 사용할 수 있다.
+- async function : 
 
 process란? -> 실행 중에 있는 프로그램
 그럼 프로그램은 뭐야? -> 보조기억장치(하드디스크)에 저장되어 있는 명령어의 집합 + 정적 데이터 
