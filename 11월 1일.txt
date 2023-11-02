@@ -1,0 +1,33 @@
+SPA(single page application)
+웹 애플리케이션의 초기 로딩 후 새로운 페이지 요청 없이 동적으로 화면을 갱신하며 사용자와 상호작용하는 웹 애플리케이션
+->  CSR(client-side rendering) 방식을 사용
+: 클라이언트에서 화면을 렌더링하는 방식
+-브라우저는 페이지에 필요한 최소한의 html페이지와 스크립트 코드를 다운로드
+-그런 다음 자바 스크립트를 사용하여 DOM을 업데이트하고 페이지를 렌더링
+(장점)
+-빠른 속도 : 페이지의 일부만  re-rendering하는 것이 가능 / 서버로 전송되는 데이터의 양을 최소화
+-사용자 경험 개선 : 새로고침이 발생하지 않아 네이티브 앱과 유사한 사용자 경험을 제공
+-front-end back-end의 명확한 분리 : UI rendering및 사용자 상호작용처리는 프론트가, 데이터 및 API제공을 백엔드가 담당 
+(단점)
+-초기 구동속도가 느림 : SSR에서는 데이터를 모두 그리고 클라이언트에 전달하는데, CSR은 빈 페이지를 받은 다음 요소를 그리기 때문
+-SEO(검색엔진 최적화)문제 
+
+ref()
+: 반응형 상태(데이터)를 선언하는 함수
+-> 반응형의 참조 변수를 만드는 것 
+why Refs?
+템플릿에서 ref를 사용하고 나중에 ref의 값을 변경하면 자동으로 변경 사항을 감지하고
+DOM을 적절하게 업데이트 한다. 컴포넌트가 처음 렌더링 될 때, Vue는 렌더링 과정에서 사용된 모든 ref를 추적한다. 
+나중에 ref가 변경되면 구성 요소에 대해 다시 렌더링 
+
+
+※CORS(Cross-Origin-Resource-Error)
+Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/v1/articles/' from origin 'http://127.0.0.1:5500'
+has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+요청을 받은 출처와 요청을 보낸 출처가 다른 경우, 출처가 다른 소스끼리의 통신을 막아놓음
+
+settings.py 파일에서
+INSTALLED_APPS : 'corsheaders' 추가
+MIDDLEWARE : "corsheaders.middleware.CorsMiddleware", "django.middleware.common.CommonMiddleware" 추가
+CORS_ALLOW_ALL_ORIGINS = True 추가
+

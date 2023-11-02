@@ -1,0 +1,23 @@
+To install the vue/cli , in a terminal or command prompt type:
+$npm install -g @vue/cli
+
+You can now create a new Vue.js application by typing:
+$vue create (my-app)
+
+navigating to the new folder and typing npm run serve to start the web server 
+and open the application in a browser:
+$cd my-app
+$npm run serve
+
+To open your Vue application in VS Code, from a terminal (or command prompt), 
+navigate to the my-app folder and type code .:
+$cd my-app
+$code .
+
+
+※v-bind
+사용자 입력값 <- 자바스크립트 변수가 가리키는 값 
+
+※v-model
+사용자 입력값 <-> 자바스크립트 변수가 가리키는 값
+
