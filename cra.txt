@@ -9,6 +9,8 @@ $npm init
 #package.json파일의 의존성을 설치
 $npm install
 #create-react-app패키지를 설치
+
+
 $npm install create-react-app
 #npx로 패키지 실행하기 
 $npx create-react-app my-app .
