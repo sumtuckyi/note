@@ -21,3 +21,12 @@ $code .
 ※v-model
 사용자 입력값 <-> 자바스크립트 변수가 가리키는 값
 
+
+$npm create vite@latest
+안내에 따라 project name 지정
+$cd (project name)
+
+$npm install
+
+$npm run dev
+
