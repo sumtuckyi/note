@@ -25,7 +25,7 @@ $code .
 $npm create vite@latest
 안내에 따라 project name 지정
 $cd (project name)
-
+프로젝트에 필요한 패키지 설치
 $npm install
 
 $npm run dev
