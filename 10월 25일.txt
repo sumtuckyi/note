@@ -50,11 +50,11 @@ object
 java script object 
 1.단축 구문 : 키 이름과 값으로 쓰이는 변수명이 동일하면 하나만 쓸 수 있음
 2.단축 메서드 : 메서드 선언 시 function 키워드 생략 가능 
-3.계산된 속성 :
+3.계산된 속성 : object의 속성이름을 동적으로 할당
 4.♥구조 분해 할당(destructing assignment) : 배열 또는 객체를 분해하여 속성을 변수에 쉽게 할당할 수 있는 문법
 : 객체의 경우, key값과 동일한 이름을 사용하여야 함
 5.전개 구문 : 객체 복사
-6.유용한 객체 메서드
+6.유용한 객체 메서드 : object.keys(), object.values()
 7.optional chaining : 속성이 없는 중첩 객체를 에러 없이 접근할 수 있음(참조 대상이 null 또는 undefined라면 에러가
 발생하는 대신 평가를 멈추고  undefined를 반환) 
 
