@@ -1,7 +1,7 @@
 component
 : 재사용이 가능한 코드 블럭
 -UI를 독립적이고 재사용이 가능한 부분으로 분할하고 각 부분을 개별적으로 조작할 수 있다. 
--자연스럽게 앱은 중첩된 컴포넌트의 트리고 구성됨
+-자연스럽게 앱은 중첩된 컴포넌트의 트리로 구성됨
 -생성 -> 등록 과정을 거쳐 사용 가능
 
 SFC
@@ -27,10 +27,12 @@ npm install command에 의해 설치됨
 필요한 스타일 시트, 스크립트 등의 외부 리소스를 로드할 수 있음
  
 
-NPM
+★★★NPM★★★
 : node.js의 기본 패키지 관리자(오픈 소스 패키지와 라이브러리)
 크롬의 v8자바스크립트 엔진을 기반으로 하는 서버-사이드 실행 환경
 브라우저에서만 동작할 수 있었던 자바스크립트를 브라우저가 아닌 서버 측에서도 실행할 수 있게 함
+전역적으로 설치된 패키지를 관리
+
 
 module
 : 프로그램을 구성하는 독립적인 코드 블럭(*.js파일)
@@ -45,4 +47,10 @@ virtual DOM
 웹 애플리케이션의 성능 향상을 위함
 (실제 DOM에 접근하여 조작하는 것을 최소화, 지양)
 ★ref와 Lifecycle Hooks함수를 사용해 DOM에 간접적으로 접근하여 조작할 것★
-
+Real DOM is the actual structure represented in the User Interface while Virtual DOM is the memory representation of the same. A virtual DOM object has the same properties as a real DOM object, but it lacks the real thing’s power to directly change what’s on the screen.
+The DOM is represented as a tree data structure. Because of that, the changes and updates to the DOM are fast. But after the change, the updated element and its children have to be re-rendered to update the application UI. The re-rendering or re-painting of the UI is what makes it slow.
+The difference between the previous version of the virtual DOM tree and the current virtual DOM tree is then calculated. The whole parent subtree then gets re-rendered to give the updated UI. This updated tree is then batch updated to the real DOM.
+ex) 
+Once the virtual DOM has been updated, React then compares the current version of the virtual DOM with the previous version of the virtual DOM. This process is called “diffing”.
+updates to the real DOM are sent in batches, instead of sending updates for every single change in state.
+The repainting of the UI is the most expensive part, and React efficiently ensures that the real DOM receives only batched updates to repaint the UI.
