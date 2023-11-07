@@ -1,0 +1,48 @@
+component
+: 재사용이 가능한 코드 블럭
+-UI를 독립적이고 재사용이 가능한 부분으로 분할하고 각 부분을 개별적으로 조작할 수 있다. 
+-자연스럽게 앱은 중첩된 컴포넌트의 트리고 구성됨
+-생성 -> 등록 과정을 거쳐 사용 가능
+
+SFC
+: *.vue 파일 하나가 하나의 component가 된다. 
+-<script setup>
+-<style scoped>: css가 현재 컴포넌트에서만 적용
+
+vite project structure
+node_modules / public / src > assets , components(*.vue 파일 포함) , App.vue, main.js / index.html
+-node_modules : node.js프로젝트에서 사용되는 외부 패키지들이 저장되는 디렉토리
+프로젝트의 의존성 모듈을 저장하고 관리하는 공간
+.gitignore에 작성됨 
+npm install command에 의해 설치됨
+-> package.json파일 + package-lock.json파일에 의존성 모듈에 대한 정보를 저장해서 사용
+-package-lock.json : npm install command로 패키지를 설치할 때, 여기에 명시된 버전과 의존성을 기반으로 설치
+-package.json : package-lock.json파일의 역할을 보조, 프로젝트의 메타 정보(프로젝트 이름, 버전, 작성자 등)와 의존성 패키지 목록을 포함
+-public : 소스코드에서 참조되지 않고 항상 같은 이름을 가지며 import할 필요가 없는 정적 파일이 주로 위치함
+항상 root절대 경로를 사용하여 참조
+-src : 컴포넌트, 스타일, 라우팅 등 프로젝트의 핵심 코드를 관리 / >assets : 프로젝트 내에서 사용되는 자원, 컴포넌트 자체에서
+참조하는 내부 파일을 저장, 컴포넌트가 아닌 곳에서는 public에 위치한 자원을 사용 / >components : vue component위치 
+/ App.vue : vue 앱의 최상위 루트 컴포넌트 / main.js : Vue 인스턴스를 생성하고 애플리케이션을 초기화, 필요한 라이브러리를 import하고 전역 설정을 수행
+- index.html: Vue앱의 기본 HTML파일, 앱의 진입점, 루트 컴포넌트인 App.vue가 해당 페이지에 마운트됨(Vue앱이 SPA인 이유)
+필요한 스타일 시트, 스크립트 등의 외부 리소스를 로드할 수 있음
+ 
+
+NPM
+: node.js의 기본 패키지 관리자(오픈 소스 패키지와 라이브러리)
+크롬의 v8자바스크립트 엔진을 기반으로 하는 서버-사이드 실행 환경
+브라우저에서만 동작할 수 있었던 자바스크립트를 브라우저가 아닌 서버 측에서도 실행할 수 있게 함
+
+module
+: 프로그램을 구성하는 독립적인 코드 블럭(*.js파일)
+파일 하나에 담겨있던 기능을 여러 개로 분리하여 관리하게 되었음
+-> module의 수가 많아지고 라이브러리 혹은 모듈 간의 의존성이 깊어지면서
+특정한 곳에서 발생한 문제가 어떤 모듈 간의 문제인지 파악하기 어려워짐 
+=> 이 문제를 해결하기 위한 도구로서 등장한 것이 Bundler(의존성 관리, 코드 최적화, 리소스 관리)
+
+virtual DOM
+: 가상의 DOM을 메모리에 저장하고 실제 DOM과 동기화하는 프로그래밍 개념
+실제 DOM과의 변경 사항 비교를 통해 변경된 부분만 실제 DOM에 적용하는 방식
+웹 애플리케이션의 성능 향상을 위함
+(실제 DOM에 접근하여 조작하는 것을 최소화, 지양)
+★ref와 Lifecycle Hooks함수를 사용해 DOM에 간접적으로 접근하여 조작할 것★
+

@@ -43,3 +43,6 @@ computed vs. watchers
 Lifecycle Hooks
 : Vue 인스턴스의 생애주기에서 특정 시점에 실행되는 함수 
 Vue는 Lifecycle Hooks의 콜백함수와 해당하는 인스턴스를 자동으로 연결해줌
+
+※생애주기
+: 
