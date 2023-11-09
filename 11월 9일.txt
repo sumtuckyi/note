@@ -1,0 +1,32 @@
+ it does not wait for asynchronous operations to complete before moving on to the next iteration.
+forEach does not expect or handle promises returned from the callback function. The await keyword can only be used within an asynchronous function, denoted by the async keyword in its declaration. The forEach method, being synchronous, does not provide a mechanism to pause execution and wait for promises to resolve. 
+
+SSR
+클라이언트로부터 요청을 받을 때마다 HTML페이지를 응답으로 보내야 했음
+
+CSR
+최초요청의 응답으로 HTML을 받은 이후에는 요청을 보내도 JSON을 응답으로 받아(AJAX) 새 데이터를 동적으로 렌더링함. 페이지는 1개만 사용하지만 링크에 따라 다른 컴포넌트를 렌더링하여 마치 여러 페이지를 
+사용하는 것처럼 경험하게 함.
+
+
+<RouterLink>로 생성된 a태그를 클릭하면 지정된 URL로 바뀌고 해당 주소와 연결된 컴포넌트가 
+정해진 위치(<RouterView />로 지정)에 렌더링 된다.
+
+why routing? 
+-> 다른 페이지 간의 전환 효과를 만들고 경로를 관리하기 위함 
+
+router.push({ name: 'home' })
+router.replace({ name: 'home' })
+
+Navigation Guard
+-globally guard : router.beforeEach() - 다른 url로 이동하기 직전에 실행되는 함수(return의 유무, 내용에 따라 네비게이션을 취소/다른 주소로 redirect/바로 to로 이동)
+-Pre-route : router.beforeEnter() - 해당 route에 진입했을 때에만 실행되는 함수
+-In-component : onBeforeRouteLeave, onBeforeRouteUpdate - 하나의 route객체가 재사용되는 경우
+
+※ lazy-loading routes
+: 첫 빌드 시 해당 컴포넌트를 로드하지 않고, 해당 경로를 처음으로 방문할 때만 컴포넌트를 로드
+(앱을 빌드할 때 앱의 크기에 따라 페이지 로드 시간이 길어질 수 있기 때문)
+기존의 정적 가져오기 방식을 동적 가져오기 방식으로 변경하는 것
+ex) component: () => import('../views/AboutView.vue')
+
+'d657be159c19756b15dadd14af992a1a'
